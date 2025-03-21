@@ -5,20 +5,25 @@ let ctx = canvas.getContext("2d");
 // رابط الصورة المباشر (استبدله برابط الصورة الفعلي)
 let imageUrl = "https://www2.0zz0.com/2025/03/21/10/625729440.png"; 
 
-// تحميل الصورة وضبط حجم الكانفاس تلقائيًا
+// تحميل الصورة
 let img = new Image();
-img.crossOrigin = "anonymous"; // لحل مشكلة CORS إذا كانت الصورة على سيرفر خارجي
+img.crossOrigin = "anonymous"; // لحل مشكلة CORS
 img.src = imageUrl;
 
 img.onload = function() {
-    // ضبط حجم الكانفاس بناءً على حجم الصورة الأصلية
+    drawImage();
+};
+
+// دالة لإعادة رسم الصورة عند الحاجة
+function drawImage() {
     canvas.width = img.width;
     canvas.height = img.height;
     ctx.drawImage(img, 0, 0, img.width, img.height);
-};
+}
 
 // دالة لإضافة النص على الصورة
 function drawText() {
+    drawImage(); // إعادة تحميل الصورة قبل الرسم
     let text = document.getElementById("textInput").value;
     ctx.font = "30px Arial";
     ctx.fillStyle = "red";
