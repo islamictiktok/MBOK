@@ -2,14 +2,19 @@
 let canvas = document.getElementById("canvas");
 let ctx = canvas.getContext("2d");
 
-// تحميل الصورة في الخلفية وضبط حجم الكانفاس تلقائيًا
+// رابط الصورة المباشر (استبدله برابط الصورة الفعلي)
+let imageUrl = "https://www2.0zz0.com/2025/03/21/10/625729440.png"; 
+
+// تحميل الصورة وضبط حجم الكانفاس تلقائيًا
 let img = new Image();
-img.src = "image.png"; // تأكد أن الصورة موجودة في نفس المجلد
+img.crossOrigin = "anonymous"; // لحل مشكلة CORS إذا كانت الصورة على سيرفر خارجي
+img.src = imageUrl;
+
 img.onload = function() {
-    // ضبط حجم الكانفاس بناءً على حجم الصورة
+    // ضبط حجم الكانفاس بناءً على حجم الصورة الأصلية
     canvas.width = img.width;
     canvas.height = img.height;
-    ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+    ctx.drawImage(img, 0, 0, img.width, img.height);
 };
 
 // دالة لإضافة النص على الصورة
