@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>محرر النصوص على الصورة</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <div class="container">
+        <h2>محرر النصوص على الصورة</h2>
+        <canvas id="canvas"></canvas>
+        
+        <div class="form-group">
+            <input type="text" id="textInput" placeholder="أدخل النص هنا">
+            <button onclick="drawText()">إضافة النص</button>
+            <button onclick="saveImage()">حفظ الصورة</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
