@@ -5,7 +5,7 @@ let ctx = canvas.getContext("2d");
 // تحميل الصورة
 let img = new Image();
 img.crossOrigin = "anonymous"; // لحل مشكلة CORS عند استخدام صور من الإنترنت
-img.src = "https://www2.0zz0.com/2025/03/21/10/625729440.png"; // استبدل بالرابط الصحيح أو صورة محلية
+img.src = "image.png"; // استبدل بالرابط الصحيح أو صورة محلية
 
 // التأكد من تحميل الصورة قبل الرسم
 img.onload = function() {
