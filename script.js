@@ -2,32 +2,36 @@
 let canvas = document.getElementById("canvas");
 let ctx = canvas.getContext("2d");
 
-// رابط الصورة المباشر (استبدله برابط الصورة الفعلي)
+// رابط الصورة (استخدم رابطًا مباشرًا أو صورة محلية)
 let imageUrl = "https://www2.0zz0.com/2025/03/21/10/625729440.png"; 
 
-// تحميل الصورة
+// تحميل الصورة وضبط الكانفاس تلقائيًا
 let img = new Image();
-img.crossOrigin = "anonymous"; // لحل مشكلة CORS
+img.crossOrigin = "anonymous"; // لتجنب مشاكل CORS
 img.src = imageUrl;
 
 img.onload = function() {
+    // ضبط حجم الكانفاس بناءً على أبعاد الصورة الأصلية
+    canvas.width = img.naturalWidth;
+    canvas.height = img.naturalHeight;
     drawImage();
 };
 
-// دالة لإعادة رسم الصورة عند الحاجة
+// دالة لرسم الصورة
 function drawImage() {
-    canvas.width = img.width;
-    canvas.height = img.height;
-    ctx.drawImage(img, 0, 0, img.width, img.height);
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
 }
 
 // دالة لإضافة النص على الصورة
 function drawText() {
-    drawImage(); // إعادة تحميل الصورة قبل الرسم
+    drawImage(); // إعادة رسم الصورة قبل النص
     let text = document.getElementById("textInput").value;
+
     ctx.font = "30px Arial";
     ctx.fillStyle = "red";
-    ctx.fillText(text, 50, canvas.height / 2);
+    ctx.textAlign = "center";
+    ctx.fillText(text, canvas.width / 2, canvas.height / 2);
 }
 
 // دالة لحفظ الصورة بعد التعديل
