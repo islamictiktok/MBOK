@@ -7,30 +7,32 @@ let imageUrl = "https://www2.0zz0.com/2025/03/21/10/625729440.png";
 
 // تحميل الصورة وضبط الكانفاس تلقائيًا
 let img = new Image();
-img.crossOrigin = "anonymous"; // لتجنب مشاكل CORS
+img.crossOrigin = "anonymous"; // لحل مشكلة CORS عند تحميل صورة خارجية
 img.src = imageUrl;
 
 img.onload = function() {
-    // ضبط حجم الكانفاس بناءً على أبعاد الصورة الأصلية
+    // جعل الكانفاس يأخذ نفس أبعاد الصورة الأصلية
     canvas.width = img.naturalWidth;
     canvas.height = img.naturalHeight;
-    drawImage();
-};
-
-// دالة لرسم الصورة
-function drawImage() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    
+    // رسم الصورة على الكانفاس
     ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
-}
+};
 
 // دالة لإضافة النص على الصورة
 function drawText() {
-    drawImage(); // إعادة رسم الصورة قبل النص
     let text = document.getElementById("textInput").value;
 
+    // إعادة رسم الصورة قبل النص حتى لا يتم مسحه
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+
+    // إعدادات النص
     ctx.font = "30px Arial";
     ctx.fillStyle = "red";
     ctx.textAlign = "center";
+
+    // رسم النص في منتصف الصورة
     ctx.fillText(text, canvas.width / 2, canvas.height / 2);
 }
 
