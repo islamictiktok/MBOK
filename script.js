@@ -2,27 +2,26 @@
 let canvas = document.getElementById("canvas");
 let ctx = canvas.getContext("2d");
 
-// تحميل الصورة
+// رابط الصورة (استخدم رابطًا مباشرًا أو صورة محلية)
+let imageUrl = "image.png"; 
+
+// تحميل الصورة وضبط الكانفاس تلقائيًا
 let img = new Image();
-img.crossOrigin = "anonymous"; // لحل مشكلة CORS عند استخدام صور من الإنترنت
-img.src = "image.png"; // استبدل بالرابط الصحيح أو صورة محلية
+img.crossOrigin = "anonymous"; // لتجنب مشاكل CORS
+img.src = imageUrl;
 
-// التأكد من تحميل الصورة قبل الرسم
 img.onload = function() {
-    console.log("✅ الصورة تم تحميلها بنجاح!");
-
-    // ضبط حجم الكانفاس بناءً على حجم الصورة الأصلية
+    // ضبط حجم الكانفاس بناءً على أبعاد الصورة الأصلية
     canvas.width = img.naturalWidth;
     canvas.height = img.naturalHeight;
+    drawImage();
+};
 
-    // رسم الصورة على الكانفاس
+// دالة لرسم الصورة
+function drawImage() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
     ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
-};
-
-// إذا حدث خطأ في تحميل الصورة، أظهر رسالة في الكونسول
-img.onerror = function() {
-    console.error("❌ فشل تحميل الصورة. تأكد من الرابط أو جرب صورة محلية.");
-};
+}
 
 // دالة لإضافة النص على الصورة
 function drawText() {
@@ -32,8 +31,6 @@ function drawText() {
     ctx.font = "30px Arial";
     ctx.fillStyle = "red";
     ctx.textAlign = "center";
-
-    // رسم النص في منتصف الصورة
     ctx.fillText(text, canvas.width / 2, canvas.height / 2);
 }
 
